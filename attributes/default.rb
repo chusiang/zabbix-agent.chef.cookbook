@@ -57,12 +57,7 @@ default['zabbix']['agent']['conf']['DebugLevel']  = '3'
 # default['zabbix']['agent']['conf']['EnableRemoteCommands'] = '0'
 default['zabbix']['agent']['conf']['EnableRemoteCommands'] = '1'
 default['zabbix']['agent']['conf']['HostMetadata'] = nil
-default['zabbix']['agent']['conf']['Hostname']     = nil # defaults to HostnameItem
-# default['zabbix']['agent']['conf']['HostnameItem'] = nil # set by system.hostname
-unless node['platform'] == 'windows'
-  default['zabbix']['agent']['conf']['HostnameItem'] = `hostname -f`.gsub(/\n/,'')
-end
-# default['zabbix']['agent']['conf']['Include']  = nil #default
+default['zabbix']['agent']['conf']['Hostname']     = `hostname -f`.gsub(/\n/,'')
 default['zabbix']['agent']['conf']['Include']      = ::File.join(default['zabbix']['agent']['include_dir'], '*.conf')
 default['zabbix']['agent']['conf']['ListenIP']     = '0.0.0.0'
 default['zabbix']['agent']['conf']['ListenPort']   = '10050'
