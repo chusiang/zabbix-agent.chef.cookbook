@@ -17,6 +17,17 @@ Vagrant.configure("2") do |config|
   server_ip = "192.168.50.10"
   config.vm.network :private_network, ip: server_ip
 
+  # (Workaround) Enable ssh public-key login.
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = true
+  config.vm.provision "shell", inline: "
+    sed -i 's/#PubkeyAuthentication\ yes/PubkeyAuthentication\ yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#RSAAuthentication\ yes/RSAAuthentication\ yes/' /etc/ssh/sshd_config && \
+    service sshd restart && \
+    chmod 600 /home/vagrant/.ssh/authorized_keys
+  "
+
   config.omnibus.chef_version = "11.6.2"
   config.vm.provision :chef_solo do |chef|
     chef.json = {
