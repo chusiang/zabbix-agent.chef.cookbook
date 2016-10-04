@@ -8,7 +8,7 @@ describe file('C:\programdata\zabbix\scripts') do
   it { should be_directory }
 end
 
-describe file('C:\programdata\zabbix\zabbix_agentd.d') do
+describe file('C:\programdata\zabbix\zabbix_agentd.conf.d') do
   it { should be_directory }
 end
 
