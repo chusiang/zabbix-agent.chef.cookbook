@@ -4,7 +4,7 @@ maintainer_email 'bill.warner@gmail.com'
 license 'Apache 2.0'
 description 'Installs/Configures Zabbix Agent'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.14.0'
+version '0.14.1'
 
 # tested on ubuntu 10.04 12.04 and 14.04
 supports 'ubuntu', '>= 10.04'
